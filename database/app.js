@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
 const Sequelize = require('sequelize');
 const Contact = require('./schemas/contact');
 
@@ -10,85 +9,10 @@ const { Op } = Sequelize;
 
 // parse application/json
 app.use(bodyParser.json());
-// app.use(express.json());
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(express.urlencoded({ extended: true }));
 
-
-// ####
-// demo
-// const Artist = require('./schemas/artist_');
-// const Album = require('./schemas/album_');
-// const Track = require('./schemas/Track_');
-
-// Artist.hasMany(Album,{
-//     foreignKey: "ArtistId"
-// })
-
-// Album.belongsTo(Artist,{
-//     foreignKey: "ArtistId"
-// })
-
-// Playlist.belongsToMany(Track,{
-//     through: "playlist_track",
-//     foreignKey: "playlistId",
-//     timestamps: false
-// });
-
-// Track.belongsToMany(Playlist,{
-//     through: "playlist_track",
-//     foreignKey: "trackId",
-//     timestamps: false
-// });
-
-// app.get('/api/artists/:id', function(req, res) {
-    
-//     let {id} = req.params;
-    
-//     Artist.findByPk(id, {
-//         include: [Album]
-//     }).then((artist) => {
-//         if(artist) {
-//             res.json(artist);
-//         } else {
-//             res.status(404).send();
-//         }
-//     });
-// });
-
-// app.get('/api/albums/:id', function(req, res) {
-    
-//     let {id} = req.params;
-    
-//     Album.findByPk(id, {
-//         include: [Artist]
-//     }).then((album) => {
-//         if(album) {
-//             res.json(album);
-//         } else {
-//             res.status(404).send();
-//         }
-//     });
-// });
-
-// app.get('/api/tracks/:id', function(req, res) {
-    
-//     let {id} = req.params;
-    
-//     Track.findByPk(id, {
-//         include: [Playlist]
-//     }).then((track) => {
-//         if(track) {
-//             res.json(track);
-//         } else {
-//             res.status(404).send();
-//         }
-//     });
-// });
-// end of demo
-// ####
 
 // copied to ./db/Sequelize.js
 // const sequelize = new Sequelize("database_development", "root", "root", {
