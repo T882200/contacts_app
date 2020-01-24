@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const Sequelize = require('sequelize');
 const Contact = require('./schemas/contact');
@@ -23,7 +24,27 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // the wrong
 // const sequelize = new Sequelize('mysql:contacts.db');
 
+// var whitelist = ['http://localhost:3000/']
+// var corsOptions = {
+//     origin: function (origin, callback) {
+//       if (whitelist.indexOf(origin) !== -1 || !origin) {
+//         callback(null, true)
+//       } else {
+//         callback(new Error('Not allowed by CORS'))
+//       }
+//     }
+//   }
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+    
+    if(req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET, OPTIONS');
+        return res.status(200).json({});
+    }
+    next();
+})
 
 
 
