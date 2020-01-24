@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "concurrently": "^5.0.2"
+  },
+  "scripts": {
+    "start": "concurrently --kill-others \"cd .\\frontend\\ && npm i && npm start\" \"cd .\\database\\ && npm i && nodemon app.js\""
+  }
+}
