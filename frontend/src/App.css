@@ -1,31 +1,17 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+a {
+  color: #333;
+  text-decoration: none;
 }
 
 
@@ -34,6 +20,15 @@
 
 
 
+
+
+
+
+
+
+
+
+/* Contacts App CSS */
 
 body {
 	background-color: #E6EAF4;
@@ -51,11 +46,41 @@ button {
 	margin: 0px auto;
 }
 
+.search-input {
+	height: 37px;
+	background-color: white;
+	border-radius: 4px;
+	padding-left: 9px;
+	display: flex;
+	align-items: center;
+	align-content: stretch;
+	justify-content: space-between;
+	margin-bottom: 20px;
+	border: 2px solid #DFE4EA;
+}
 
+.search-input input {
+	width: 100%;
+	overflow: hidden;
+	border: 0px;
+}
 
+.search-input input:focus {
+	outline:none;
+}
 
+.search-icon {
+	padding-right: 15px;
+	padding-left: 10px;
+	color: #979CB0;
+}
 
+.contacts-container {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
 
+}
 
 .contact {
 	height: 104px;
@@ -118,7 +143,6 @@ button {
 	font-size: 20px;
 }
 
-
 .contact-new {
 	display: flex;
 	justify-content: center;
@@ -144,23 +168,90 @@ button[disabled] {
 	cursor: not-allowed;
 }
 
+/*NEW CONTACT*/
 
-
-
-
-
-
-
-
-
-
-
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.new-contact-container {
+	background-color: white;
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-content: stretch;
+	justify-content: space-between;
 }
+
+.new-contact-avatar {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.new-contact-avatar img{
+	width: 128px;
+	height: 128px;
+	border-radius: 62px;
+	margin-bottom: 10px;
+}
+
+.new-contact-avatar button {
+	width: 30px;
+    height: 30px;
+    background-color: #5689e8;
+    border: 1px solid #3e79e8;
+    border-radius: 4px;
+    color: white;
+    font-size: 18px;
+}
+
+.new-contact-inputs {
+	width: 250px;
+	display: flex;
+	flex-direction: column;
+}
+
+.new-contact-input {
+	padding-bottom: 20px;	
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+}
+
+.new-contact-input label{
+	font-weight: bold;
+	margin-right: 5px;
+}
+
+.new-contact-input input{
+	border-radius: 4px;
+	padding: 5px;
+	font-weight: bold;
+	border: 1px solid #a6a6a6;
+	flex-grow: 1;
+}
+
+.new-contact-buttons {
+	display: flex;
+	width: 250px;
+	justify-content: space-around;
+	padding-bottom: 20px;
+}
+
+.new-contact-buttons button {
+	padding: 10px 15px;
+	border-radius: 5px;
+	font-size: 18px;
+	border: 1px solid #a6a6a6;
+	color: white;
+}
+
+.button-ok {
+	background-color: #72DB63;
+}
+
+.button-cancel {
+	background-color: red;
+}
+
+/*END NEW CONTACT*/

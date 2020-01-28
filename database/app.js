@@ -39,6 +39,7 @@ app.use((req, res, next) => {
 app.get('/api/contacts/', function(req, res) {
     let filter = {};
 
+
     let {q} = req.query;
     
     if (q) {
@@ -146,3 +147,4 @@ app.put('/api/contacts/:id', function(req, res) {
 
 
 app.listen(8000);
+console.log("running...")
