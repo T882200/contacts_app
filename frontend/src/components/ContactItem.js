@@ -39,7 +39,7 @@ export class ContactItem extends Component {
                     <img src={avatar ? avatar : `https://randomuser.me/api/portraits/${this.GENDER}/${this.NUMBER}.jpg`} alt="contact"/>
                 </div>
                 <div className="contact-details">
-                    <div className="contact-name"><Link to={`/contact/:${id}`}>{name}</Link></div>
+                    <div className="contact-name"><Link to={`/contact/:${id}`}>{title} {name}</Link></div>
                     <div className="contact-phone">{phone}</div>
                 </div>
                 <div className="contact-buttons">
@@ -74,15 +74,6 @@ export class ContactItem extends Component {
 //     backgroundColor:'#222'
 // }
 
-const btnStyle = {
-    background: "#ff0000",
-    color: "#fff",
-    border:"none",
-    padding:"5px 9px",
-    borderRadius:"50%",
-    cursor:"pointer",
-    float:"right"
-}
 
 
 

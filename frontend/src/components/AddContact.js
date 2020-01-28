@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import propTypes from 'prop-types'
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
@@ -76,10 +75,6 @@ export class AddContact extends Component {
 }
 
 // propTypes
-AddContact.propTypes = {
-    // addContact: propTypes.func.isRequired,
-    // markComplete: propTypes.func.isRequired,
-    // delContact: propTypes.func.isRequired
-}
+
 
 export default AddContact

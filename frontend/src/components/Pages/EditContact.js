@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
-import { useHistory } from "react-router-dom";
 
 import { faSync } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 
 import axios from 'axios';
 
@@ -50,14 +48,14 @@ export class NewContact extends Component {
         axios.get(`https://randomuser.me/api/portraits/${GENDER}/${NUMBER}.jpg`)
           .then(res => this.setState({avatar: res.data}));
 
-          console.log(this.state)
-          console.log(this.props.contacts)
+        //   console.log(this.state)
+        //   console.log(this.props.contacts)
         
           let filteredContact = this.props.contacts.filter((contact) => {
-            return contact.id == this.props.match.params.id.substring(1,);
+            return contact.id.toString() === this.props.match.params.id.substring(1,);
           });
 
-          console.log(filteredContact)
+        //   console.log(filteredContact)
           this.setState({
             id:filteredContact[0].id,
             name:filteredContact[0].name,
@@ -79,7 +77,7 @@ export class NewContact extends Component {
     onChange = (e) => this.setState({ [e.target.name]: e.target.value })
     
     validate = () => {
-        const phoneRegex = RegExp('/^\d{10}-\d{3}-\d{4}$/','gm');
+        const phoneRegex = RegExp('/^\d{10}-\d{3}-\d{4}$/','gm'); //eslint-disable-line
 
         let isError = false;
 
@@ -151,7 +149,7 @@ export class NewContact extends Component {
             <div className="new-contact-container">
                 <div className="new-contact-avatar">
                         {/* <img src="https://randomuser.me/api/portraits/men/81.jpg"/> */}
-                        <img src={this.state.avatar}/>
+                        <img src={this.state.avatar} alt={this.state.name}/>
                         <button onClick={this.getPhoto}><FontAwesomeIcon icon={faSync} /></button>
                 </div>
                 <form onSubmit={this.onSubmit}>

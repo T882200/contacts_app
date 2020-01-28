@@ -1,13 +1,11 @@
 import React from 'react';
-import uuid from 'uuid';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 
 import './App.css';
 
 import Contacts from './components/Contacts';
 import AddContact from './components/AddContact';
-import Header from './components/layout/Header';
 
 import About from './components/Pages/About';
 import NewContact from './components/Pages/NewContact';
@@ -15,8 +13,6 @@ import EditContact from './components/Pages/EditContact';
 
 import Search from './components/layout/Search';
 
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class App extends React.Component {
 
@@ -93,7 +89,7 @@ class App extends React.Component {
     //   completed: false
     // }
     // this.setState({ contacts: [...this.state.contacts, newContact]})
-    console.log(contact.name)
+    // console.log(contact.name)
   }
 
   // Search contacts
@@ -106,54 +102,46 @@ class App extends React.Component {
       return contact.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || contact.phone.indexOf(this.state.search) !== -1;
     });
 
-    let c = axios.get('http://localhost:8000/api/contacts/').then(res => res).then(function (res){ return res.data})
+    // let c = axios.get('http://localhost:8000/api/contacts/').then(res => res).then(function (res){ return res.data})
 
 
     return (
       <Router>
         <div className="App">
           <div className="container">            
-            <Route exact path="/(|contacts)" render={props => (
-              <React.Fragment>
-                <div className="contact-container">
-                  
-
-
-                  {/* <div class="search-input">
-                    <input type="text" value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="search in contacts..."/>
-                    <div class="search-icon">
-                      <FontAwesomeIcon icon={faSearch} />
-                    </div>
-                  </div> */}
-
-                  <Search value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="search in contacts..."/>
-                  
-                  
-                  <Contacts 
-                    contacts={filteredContacts} 
-                    // contacts={this.state.contacts} 
-                    markComplete={this.markComplete}
-                    delContact={this.delContact}
-                  />
-                </div>
-                <AddContact addContact={this.addContact}/>
-                {/* <AddContact /> */}
-              </React.Fragment>
-            )} />
+            <Switch>
+              <Route path="/contacts/new" render={(props) => <NewContact {...props} addContact={this.addContact} />} />
+              
+              <Route path="/contact/:id" render={(props) => <EditContact 
+                {...props} 
+                // contact={this.state.contacts.filter((contact) => {
+                //   return contact.id === props.match.params.id.substring(1,)
+                // })}
+                contacts={this.state.contacts}
+                changeContact={this.changeContact} 
+              />} />
+              
+              <Route path="/about" component={About} />
+              <Route render={props => (
+                <React.Fragment>
+                  <div className="contact-container">
+                    <Search value={this.state.search} onChange={this.updateSearch.bind(this)} placeholder="search in contacts..."/>
+                    
+                    
+                    <Contacts 
+                      contacts={filteredContacts} 
+                      // contacts={this.state.contacts} 
+                      markComplete={this.markComplete}
+                      delContact={this.delContact}
+                    />
+                  </div>
+                  <AddContact addContact={this.addContact}/>
+                  {/* <AddContact /> */}
+                </React.Fragment>
+              )} />
+              
+            </Switch>
             
-            {/* <Route path="/contacts/new" component={NewContact} /> */}
-            <Route path="/contacts/new" render={(props) => <NewContact {...props} addContact={this.addContact} />} />
-            
-            <Route path="/contact/:id" render={(props) => <EditContact 
-              {...props} 
-              // contact={this.state.contacts.filter((contact) => {
-              //   return contact.id === props.match.params.id.substring(1,)
-              // })}
-              contacts={this.state.contacts}
-              changeContact={this.changeContact} 
-            />} />
-            
-            <Route path="/about" component={About} />
 
           </div>
         </div>

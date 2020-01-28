@@ -7,7 +7,7 @@ class Contacts extends Component {
     
     render() {
     
-    console.log(this.props.contacts)
+    // console.log(this.props.contacts)
     
     return this.props.contacts.map((contact) => (
         <ContactItem 

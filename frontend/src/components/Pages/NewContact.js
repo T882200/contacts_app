@@ -5,10 +5,7 @@ import { Redirect } from 'react-router';
 import { faSync } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-
-import axios from 'axios';
+// import TextField from '@material-ui/core/TextField';
 
 
 export class NewContact extends Component {
@@ -45,7 +42,7 @@ export class NewContact extends Component {
     onChange = (e) => this.setState({ [e.target.name]: e.target.value })
     
     validate = () => {
-        const phoneRegex = RegExp('/^\d{10}-\d{3}-\d{4}$/','gm');
+        const phoneRegex = RegExp('/^\d{10}-\d{3}-\d{4}$/','gm'); //eslint-disable-line
 
         let isError = false;
 
@@ -110,7 +107,7 @@ export class NewContact extends Component {
             <div className="new-contact-container">
                 <div className="new-contact-avatar">
                         {/* <img src="https://randomuser.me/api/portraits/men/81.jpg"/> */}
-                        <img src={this.state.avatar}/>
+                        <img src={this.state.avatar} alt={this.state.name}/>
                         <button onClick={this.getPhoto}><FontAwesomeIcon icon={faSync} /></button>
                 </div>
                 <form onSubmit={this.onSubmit}>
