@@ -41,6 +41,7 @@ class App extends React.Component {
       .then(res => this.setState({contacts: res.data}))
   }
 
+  
 
   // toggle completed
   markComplete = (id) => {
@@ -102,6 +103,8 @@ class App extends React.Component {
       return contact.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 || contact.phone.indexOf(this.state.search) !== -1;
     });
 
+    let c = axios.get('http://localhost:8000/api/contacts/').then(res => res).then(function (res){ return res.data})
+
 
     return (
       <Router>
@@ -140,9 +143,10 @@ class App extends React.Component {
             
             <Route path="/contact/:id" render={(props) => <EditContact 
               {...props} 
-              contact={this.state.contacts.filter((contact) => {
-                return contact.id === props.match.params.id.substring(1,)
-              })} 
+              // contact={this.state.contacts.filter((contact) => {
+              //   return contact.id === props.match.params.id.substring(1,)
+              // })}
+              contacts={this.state.contacts}
               changeContact={this.changeContact} 
             />} />
             

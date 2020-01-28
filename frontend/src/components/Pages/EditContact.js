@@ -49,15 +49,30 @@ export class NewContact extends Component {
         axios.get(`https://randomuser.me/api/portraits/${GENDER}/${NUMBER}.jpg`)
           .then(res => this.setState({avatar: res.data}));
 
-        console.log(this.state)
+          console.log(this.state)
+          console.log(this.props.contacts)
+        
+          let filteredContact = this.props.contacts.filter((contact) => {
+            return contact.id == this.props.match.params.id.substring(1,);
+          });
+
+          console.log(filteredContact)
+          this.setState({
+            id:filteredContact[0].id,
+            name:filteredContact[0].name,
+            phone:filteredContact[0].phone,
+            title:filteredContact[0].title,
+            avatar:filteredContact[0].avatar,
+        })
+        //   console.log(this.props.match.params.id.substring(1,))
     }
 
     getPhoto = () => {
         let GENDER = this.randGender();
         let NUMBER = Math.floor(Math.random() * 100);
         
-        axios.get(`https://randomuser.me/api/portraits/${GENDER}/${NUMBER}.jpg`)
-          .then(res => this.setState({avatar: res.data}))
+        this.setState({avatar:`https://randomuser.me/api/portraits/${GENDER}/${NUMBER}.jpg`});
+        console.log(this.state.avatar)
     }
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value })
@@ -105,15 +120,15 @@ export class NewContact extends Component {
     
     onSubmit = (e) => {
         e.preventDefault();
-        console.log(this.props.contact);
-        console.log(this.props.match.params.id.substring(1,));
+        // console.log(this.props.contact);
+        // console.log(this.props.match.params.id.substring(1,));
         
         this.setState({ name: '', nameError:'', phone: '', phoneError:'', title: '', avatar: ''});
         
         const err = this.validate();
 
         if(!err) {
-            this.props.addContact(this.state);
+            this.props.changeContact(this.state.id);
             this.setState({ name: '', nameError:'', phone: '', phoneError:'', title: '', avatar: ''});
             this.setState({redirect: true});
         }
@@ -156,7 +171,8 @@ export class NewContact extends Component {
                                 name="name"
                                 style={{flex: 10}}
                                 hintText="Add name..."
-                                value={this.props.contact.name}
+                                value={this.state.name}
+                                // value={this.props.contact.name}
                                 onChange={this.onChange}
                                 errorText={this.state.nameError}
                                 floatingLabelFixed
@@ -172,7 +188,7 @@ export class NewContact extends Component {
                                 name="phone" 
                                 style={{flex: 10, padding: '5px'}}
                                 placeholder="Add phone..."
-                                value={this.props.contact.phone}
+                                value={this.state.phone}
                                 onChange={this.onChange}
 
 
@@ -185,7 +201,7 @@ export class NewContact extends Component {
                                 name="title" 
                                 style={{flex: 10, padding: '5px'}}
                                 placeholder="Add title..."
-                                value={this.props.contact.title}
+                                value={this.state.title}
                                 onChange={this.onChange}
                             />
                         </div>
