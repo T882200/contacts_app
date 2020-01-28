@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
+import { useHistory } from "react-router-dom";
 
 import { faSync } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -125,13 +126,16 @@ export class NewContact extends Component {
         
         this.setState({ name: '', nameError:'', phone: '', phoneError:'', title: '', avatar: ''});
         
-        const err = this.validate();
+        // const err = this.validate();
 
-        if(!err) {
-            this.props.changeContact(this.state.id);
+        // if(!err) {
+        if(true) {
+            this.props.changeContact(this.state);
             this.setState({ name: '', nameError:'', phone: '', phoneError:'', title: '', avatar: ''});
             this.setState({redirect: true});
         }
+        
+        this.props.history.push("/");
 
     }
 
@@ -154,20 +158,17 @@ export class NewContact extends Component {
                     <div className="new-contact-inputs">
                         <div className="new-contact-input">
                             <label>Name</label>
-                            {/* <input 
+                            <input 
                                 type="text" 
                                 name="name" 
                                 style={{flex: 10, padding: '5px'}}
                                 placeholder="Add name..."
                                 value={this.state.name}
                                 onChange={this.onChange}
-
-                                ref="name"
-                                onKeyPress={(e) => this.validateName(e)}
                             />
-                            <div>{this.nameError}</div> */}
+                            <div>{this.nameError}</div>
                             
-                            <TextField
+                            {/* <TextField
                                 name="name"
                                 style={{flex: 10}}
                                 hintText="Add name..."
@@ -176,7 +177,7 @@ export class NewContact extends Component {
                                 onChange={this.onChange}
                                 errorText={this.state.nameError}
                                 floatingLabelFixed
-                            />
+                            /> */}
 
 
 

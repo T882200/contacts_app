@@ -61,14 +61,17 @@ class App extends React.Component {
     axios.delete(`http://localhost:8000/api/contacts/${id}`)
       .then(res => this.setState({ contacts: [...this.state.contacts.filter(contact => contact.id !== id)]}))
     
-    
-    // this.setState({ contacts: [...this.state.contacts.filter(contact => contact.id !== id)]})
   }
 
     // change contact
-    changeContact = (id) => {
+    changeContact = (contact) => {
 
-      axios.put(`http://localhost:8000/api/contacts/${id}`)
+      axios.put(`http://localhost:8000/api/contacts/${contact.id}`, {
+        name: contact.name,
+        phone: contact.phone,
+        avatar: contact.avatar,
+        title: contact.title
+      })
         .then(res => this.setState({ contacts: res.data }))
       
       // this.setState({ contacts: [...this.state.contacts.filter(contact => contact.id !== id)]})

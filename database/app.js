@@ -127,7 +127,12 @@ app.put('/api/contacts/:id', function(req, res) {
                     updatedAt: Sequelize.literal('CURRENT_TIMESTAMP')
                 }
             ).then((contact) => {
-                res.json(contact);
+                
+                Contact.findAll().then((contacts) => {
+                    res.json(contacts);
+                });
+                
+                // res.json(contact);
             }, (validaion) => {
                 res.status(422).json({
                     errors: validaion.errors.map((error) => {

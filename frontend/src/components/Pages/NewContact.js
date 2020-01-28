@@ -33,7 +33,6 @@ export class NewContact extends Component {
         let NUMBER = Math.floor(Math.random() * 100);
         
         this.setState({avatar:`https://randomuser.me/api/portraits/${GENDER}/${NUMBER}.jpg`});
-        console.log(this.state.avatar)
     }
 
     getPhoto = () => {
@@ -41,7 +40,6 @@ export class NewContact extends Component {
         let NUMBER = Math.floor(Math.random() * 100);
         
         this.setState({avatar:`https://randomuser.me/api/portraits/${GENDER}/${NUMBER}.jpg`});
-        console.log(this.state.avatar)
     }
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value })
@@ -79,9 +77,7 @@ export class NewContact extends Component {
                 phoneError:"",
             })
         }
-        // console.log(this.state.nameError);
-        // console.log(this.state.phoneError);
-        // console.log(isError);
+
         
         return isError;
     }
@@ -89,15 +85,18 @@ export class NewContact extends Component {
     
     onSubmit = (e) => {
         e.preventDefault();
-        this.setState({ name: '', nameError:'', phone: '', phoneError:'', title: '', avatar: ''});
+        // this.setState({ name: '', nameError:'', phone: '', phoneError:'', title: '', avatar: ''});
         
-        const err = this.validate();
+        // const err = this.validate();
 
-        if(!err) {
+        // if(!err) {
+            if(true) {
             this.props.addContact(this.state);
             this.setState({ name: '', nameError:'', phone: '', phoneError:'', title: '', avatar: ''});
             this.setState({redirect: true});
         }
+
+        // this.props.history.push("/");
 
     }
     
@@ -118,28 +117,25 @@ export class NewContact extends Component {
                     <div className="new-contact-inputs">
                         <div className="new-contact-input">
                             <label>Name</label>
-                            {/* <input 
+                            <input 
                                 type="text" 
                                 name="name" 
                                 style={{flex: 10, padding: '5px'}}
                                 placeholder="Add name..."
                                 value={this.state.name}
                                 onChange={this.onChange}
-
-                                ref="name"
-                                onKeyPress={(e) => this.validateName(e)}
                             />
-                            <div>{this.nameError}</div> */}
+                            <div>{this.nameError}</div>
                             
-                            <TextField
+                            {/* <TextField
                                 name="name"
                                 style={{flex: 10}}
-                                hintText="Add name..."
+                                placeholders="Add name..."
                                 value={this.state.name}
                                 onChange={this.onChange}
                                 errorText={this.state.nameError}
                                 floatingLabelFixed
-                            />
+                            /> */}
 
 
 
@@ -170,7 +166,7 @@ export class NewContact extends Component {
                         </div>
                     </div>
                     <div className="new-contact-buttons">
-                    {/* <button type="submit" className="button-ok"><Link to="/">Save</Link></button> */}
+                    {/* <button type="submit" className="button-ok" onClick={this.onSubmit}><Link to="/">Save</Link></button> */}
                         <button onClick={this.onSubmit} type="submit" className="button-ok">Save</button>
                         <button className="button-cancel"><Link to="/">Cancel</Link></button>
                     </div>
