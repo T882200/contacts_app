@@ -32,16 +32,16 @@ export class NewContact extends Component {
         let GENDER = this.randGender();
         let NUMBER = Math.floor(Math.random() * 100);
         
-        axios.get(`https://randomuser.me/api/portraits/${GENDER}/${NUMBER}.jpg`)
-          .then(res => this.setState({avatar: res.data}));
+        this.setState({avatar:`https://randomuser.me/api/portraits/${GENDER}/${NUMBER}.jpg`});
+        console.log(this.state.avatar)
     }
 
     getPhoto = () => {
         let GENDER = this.randGender();
         let NUMBER = Math.floor(Math.random() * 100);
         
-        axios.get(`https://randomuser.me/api/portraits/${GENDER}/${NUMBER}.jpg`)
-          .then(res => this.setState({avatar: res.data}))
+        this.setState({avatar:`https://randomuser.me/api/portraits/${GENDER}/${NUMBER}.jpg`});
+        console.log(this.state.avatar)
     }
 
     onChange = (e) => this.setState({ [e.target.name]: e.target.value })
